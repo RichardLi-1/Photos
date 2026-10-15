@@ -1,0 +1,3544 @@
+{
+ "mode": "parse-embed-template",
+ "eval_set": {
+  "built": "2026-10-15T02:27:12",
+  "seed": 0,
+  "photos": 21389,
+  "embedded_at_build": 6912,
+  "ocr_done": 21389,
+  "note": "relevant = metadata ground truth over all photos; eval_search.py reports embedding coverage at run time"
+ },
+ "embedded": 21389,
+ "photos": 21389,
+ "skipped": [],
+ "secs": 392.7,
+ "summary": {
+  "object/scene": {
+   "n": 15,
+   "hit@1": 0.733,
+   "hit@10": 1.0,
+   "P@10": 0.713,
+   "R@60": 0.834,
+   "MRR": 0.81
+  },
+  "caption": {
+   "n": 12,
+   "hit@1": 0.75,
+   "hit@10": 0.917,
+   "P@10": 0.092,
+   "R@60": 0.917,
+   "MRR": 0.779
+  },
+  "place": {
+   "n": 13,
+   "hit@1": 1.0,
+   "hit@10": 1.0,
+   "P@10": 0.977,
+   "R@60": 0.972,
+   "MRR": 1.0
+  },
+  "place+object": {
+   "n": 12,
+   "hit@1": 0.75,
+   "hit@10": 1.0,
+   "P@10": 0.675,
+   "R@60": 0.933,
+   "MRR": 0.861
+  },
+  "same_room": {
+   "n": 12,
+   "hit@1": 0.0,
+   "hit@10": 0.25,
+   "P@10": 0.025,
+   "R@60": 0.139,
+   "MRR": 0.07
+  },
+  "time": {
+   "n": 12,
+   "hit@1": 0.917,
+   "hit@10": 1.0,
+   "P@10": 0.875,
+   "R@60": 0.872,
+   "MRR": 0.938
+  },
+  "text_in_photo": {
+   "n": 15,
+   "hit@1": 0.933,
+   "hit@10": 0.933,
+   "P@10": 0.093,
+   "R@60": 0.933,
+   "MRR": 0.933
+  },
+  "ALL": {
+   "n": 91,
+   "hit@1": 0.736,
+   "hit@10": 0.879,
+   "P@10": 0.492,
+   "R@60": 0.807,
+   "MRR": 0.779
+  }
+ },
+ "queries": [
+  {
+   "id": "object/scene-01",
+   "type": "object/scene",
+   "query": "lighthouse",
+   "n_rel": 22,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.8,
+    "R@60": 0.9545454545454546,
+    "MRR": 1.0
+   },
+   "top10": [
+    6705,
+    1001,
+    9105,
+    4673,
+    11157,
+    5671,
+    11622,
+    3933,
+    10603,
+    14423
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11
+   ],
+   "plan": {
+    "text": "lighthouse"
+   },
+   "secs": 390.87
+  },
+  {
+   "id": "object/scene-02",
+   "type": "object/scene",
+   "query": "hot air balloons",
+   "n_rel": 5,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.5,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    6566,
+    8408,
+    4717,
+    1739,
+    3181,
+    6302,
+    9681,
+    4994,
+    7965,
+    9986
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    3,
+    4,
+    5
+   ],
+   "plan": {
+    "text": "hot air balloons"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "object/scene-03",
+   "type": "object/scene",
+   "query": "giraffe",
+   "n_rel": 22,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    1636,
+    8711,
+    14754,
+    3202,
+    14952,
+    12072,
+    3036,
+    3016,
+    10805,
+    4056
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "giraffe"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "object/scene-04",
+   "type": "object/scene",
+   "query": "show me the elephants",
+   "n_rel": 48,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 0.9375,
+    "MRR": 1.0
+   },
+   "top10": [
+    3219,
+    11680,
+    13405,
+    8494,
+    13454,
+    9485,
+    81,
+    7085,
+    240,
+    9176
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "show me the elephants"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-05",
+   "type": "object/scene",
+   "query": "a rainbow in the sky",
+   "n_rel": 30,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.8,
+    "R@60": 0.6333333333333333,
+    "MRR": 1.0
+   },
+   "top10": [
+    5357,
+    7402,
+    11269,
+    2335,
+    4260,
+    9911,
+    11553,
+    14374,
+    5817,
+    9451
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11
+   ],
+   "plan": {
+    "text": "a rainbow in the sky"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "object/scene-06",
+   "type": "object/scene",
+   "query": "penguins",
+   "n_rel": 34,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    6011,
+    7180,
+    7194,
+    9229,
+    1009,
+    8452,
+    1274,
+    195,
+    7956,
+    13363
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "penguins"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-07",
+   "type": "object/scene",
+   "query": "close-up of a butterfly",
+   "n_rel": 36,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 0.9722222222222222,
+    "MRR": 1.0
+   },
+   "top10": [
+    12704,
+    6537,
+    7559,
+    7229,
+    496,
+    10930,
+    5486,
+    5391,
+    7484,
+    2306
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "close-up of a butterfly"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-08",
+   "type": "object/scene",
+   "query": "volcano",
+   "n_rel": 33,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.4,
+    "R@60": 0.5454545454545454,
+    "MRR": 1.0
+   },
+   "top10": [
+    9903,
+    11484,
+    7263,
+    10144,
+    345,
+    11547,
+    4951,
+    2369,
+    8041,
+    12589
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    5,
+    9,
+    10,
+    15,
+    16,
+    20,
+    21,
+    30
+   ],
+   "plan": {
+    "text": "volcano"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-09",
+   "type": "object/scene",
+   "query": "fireworks at night",
+   "n_rel": 16,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.8125,
+    "MRR": 1.0
+   },
+   "top10": [
+    10769,
+    3606,
+    9620,
+    11964,
+    2718,
+    7275,
+    6754,
+    10654,
+    3378,
+    221
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "fireworks at night"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-10",
+   "type": "object/scene",
+   "query": "someone paddling a kayak or canoe",
+   "n_rel": 20,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.4,
+    "R@60": 0.65,
+    "MRR": 0.3333333333333333
+   },
+   "top10": [
+    7881,
+    13019,
+    11451,
+    20633,
+    224,
+    6742,
+    11785,
+    1966,
+    20608,
+    14970
+   ],
+   "rel_ranks": [
+    2,
+    3,
+    5,
+    8,
+    11,
+    14,
+    15,
+    19,
+    20,
+    33
+   ],
+   "plan": {
+    "text": "someone paddling a kayak or canoe"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-11",
+   "type": "object/scene",
+   "query": "a fox",
+   "n_rel": 40,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.925,
+    "MRR": 1.0
+   },
+   "top10": [
+    12832,
+    12197,
+    3050,
+    14718,
+    7198,
+    5878,
+    12385,
+    462,
+    11733,
+    8200
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "a fox"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-12",
+   "type": "object/scene",
+   "query": "a cat sleeping",
+   "n_rel": 6,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.3,
+    "R@60": 1.0,
+    "MRR": 0.14285714285714285
+   },
+   "top10": [
+    12126,
+    8733,
+    10554,
+    11405,
+    11937,
+    11870,
+    10609,
+    2623,
+    2731,
+    4196
+   ],
+   "rel_ranks": [
+    6,
+    7,
+    8,
+    10,
+    14,
+    32
+   ],
+   "plan": {
+    "text": "a cat sleeping"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-13",
+   "type": "object/scene",
+   "query": "dog playing in the snow",
+   "n_rel": 48,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.5,
+    "R@60": 0.5833333333333334,
+    "MRR": 0.3333333333333333
+   },
+   "top10": [
+    7114,
+    3851,
+    2622,
+    11544,
+    4919,
+    1370,
+    14876,
+    6474,
+    7998,
+    11989
+   ],
+   "rel_ranks": [
+    2,
+    3,
+    5,
+    6,
+    7,
+    12,
+    13,
+    15,
+    16,
+    17
+   ],
+   "plan": {
+    "text": "dog playing in the snow"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-14",
+   "type": "object/scene",
+   "query": "surfer riding a wave",
+   "n_rel": 27,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.6,
+    "R@60": 0.7037037037037037,
+    "MRR": 0.3333333333333333
+   },
+   "top10": [
+    5799,
+    12196,
+    13120,
+    10964,
+    9183,
+    20729,
+    2617,
+    6877,
+    13751,
+    13836
+   ],
+   "rel_ranks": [
+    2,
+    3,
+    5,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    17
+   ],
+   "plan": {
+    "text": "surfer riding a wave"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "object/scene-15",
+   "type": "object/scene",
+   "query": "tent under the stars",
+   "n_rel": 19,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.6,
+    "R@60": 0.7894736842105263,
+    "MRR": 1.0
+   },
+   "top10": [
+    10041,
+    2614,
+    12649,
+    6308,
+    4380,
+    7186,
+    7154,
+    11852,
+    12057,
+    13180
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    4,
+    6,
+    7,
+    9,
+    11,
+    12,
+    13,
+    14
+   ],
+   "plan": {
+    "text": "tent under the stars"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-01",
+   "type": "caption",
+   "query": "A clown takes the time to greet children attending a performance.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21254,
+    21307,
+    20972,
+    20762,
+    21274,
+    20725,
+    20735,
+    20577,
+    21181,
+    5806
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A clown takes the time to greet children attending a performance."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-02",
+   "type": "caption",
+   "query": "A woman is laying down on a sofa laughing.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20784,
+    5153,
+    12221,
+    11198,
+    8581,
+    2324,
+    20513,
+    1613,
+    4257,
+    4399
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A woman is laying down on a sofa laughing."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-03",
+   "type": "caption",
+   "query": "A middle-aged man with red-hair and glasses holding an infant.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21166,
+    20722,
+    4005,
+    21218,
+    20707,
+    20573,
+    10206,
+    20801,
+    20721,
+    10360
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A middle-aged man with red-hair and glasses holding an infant."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-04",
+   "type": "caption",
+   "query": "Finishing a summer time treat, a popsicle.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 0.2
+   },
+   "top10": [
+    20403,
+    20861,
+    197,
+    20559,
+    21301,
+    20436,
+    21067,
+    20949,
+    20924,
+    2996
+   ],
+   "rel_ranks": [
+    4
+   ],
+   "plan": {
+    "text": "Finishing a summer time treat, a popsicle."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-05",
+   "type": "caption",
+   "query": "A young boy wearing a blue shirt is playing at a park.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20820,
+    20950,
+    20806,
+    20882,
+    20564,
+    21376,
+    11604,
+    21341,
+    20883,
+    20479
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A young boy wearing a blue shirt is playing at a park."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-06",
+   "type": "caption",
+   "query": "We have to go there to look into the machine.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    20483,
+    20747,
+    16785,
+    19139,
+    20799,
+    2836,
+    20414,
+    4159,
+    3600,
+    7876
+   ],
+   "rel_ranks": [],
+   "plan": {
+    "text": "We have to go there to look into the machine."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-07",
+   "type": "caption",
+   "query": "A little boy dressed in red pants is standing in the street.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20655,
+    21108,
+    9351,
+    21120,
+    20587,
+    20500,
+    21378,
+    12783,
+    9192,
+    5045
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A little boy dressed in red pants is standing in the street."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-08",
+   "type": "caption",
+   "query": "A man wearing sunglasses is riding a scooter.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 0.14285714285714285
+   },
+   "top10": [
+    4694,
+    5787,
+    21193,
+    21155,
+    21198,
+    20974,
+    21378,
+    7627,
+    20589,
+    21212
+   ],
+   "rel_ranks": [
+    6
+   ],
+   "plan": {
+    "text": "A man wearing sunglasses is riding a scooter."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-09",
+   "type": "caption",
+   "query": "A gymnast wearing red and white is mid-twirl on an uneven bar.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20913,
+    21138,
+    21237,
+    7001,
+    20713,
+    9982,
+    20737,
+    20735,
+    20986,
+    13134
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A gymnast wearing red and white is mid-twirl on an uneven bar."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-10",
+   "type": "caption",
+   "query": "Two teenage girls hugging, one wearing a bicycle helmet, with cyclists in the background.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20887,
+    20567,
+    21363,
+    20501,
+    20827,
+    2092,
+    21076,
+    3922,
+    21063,
+    20908
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "Two teenage girls hugging, one wearing a bicycle helmet, with cyclists in the background."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-11",
+   "type": "caption",
+   "query": "A man playing tennis.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20804,
+    21305,
+    20777,
+    20869,
+    5245,
+    4705,
+    5157,
+    20821,
+    21351,
+    10157
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A man playing tennis."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "caption-12",
+   "type": "caption",
+   "query": "A fisherman is handling a net on a small boat near a dock.",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21330,
+    6891,
+    21262,
+    20615,
+    4052,
+    1745,
+    13884,
+    6328,
+    21129,
+    20910
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "A fisherman is handling a net on a small boat near a dock."
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-01",
+   "type": "place",
+   "query": "photos from Iceland",
+   "n_rel": 195,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 0.85,
+    "MRR": 1.0
+   },
+   "top10": [
+    4155,
+    3903,
+    6774,
+    1528,
+    12993,
+    1139,
+    8855,
+    3426,
+    14449,
+    996
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Iceland"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place-02",
+   "type": "place",
+   "query": "my trip to Japan",
+   "n_rel": 59,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.9830508474576272,
+    "MRR": 1.0
+   },
+   "top10": [
+    1116,
+    14985,
+    9006,
+    9597,
+    5409,
+    2214,
+    11941,
+    1184,
+    14253,
+    537
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "",
+    "place": "Japan"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place-03",
+   "type": "place",
+   "query": "pictures I took in London",
+   "n_rel": 59,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3171,
+    11861,
+    7945,
+    4063,
+    772,
+    2027,
+    7305,
+    2237,
+    13150,
+    11893
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "London"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-04",
+   "type": "place",
+   "query": "New York City",
+   "n_rel": 60,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 0.9833333333333333,
+    "MRR": 1.0
+   },
+   "top10": [
+    3974,
+    1994,
+    7107,
+    13257,
+    12207,
+    4762,
+    10306,
+    14103,
+    4596,
+    200
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "New York"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-05",
+   "type": "place",
+   "query": "San Francisco pictures",
+   "n_rel": 48,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    6432,
+    6445,
+    11739,
+    541,
+    7912,
+    6621,
+    6814,
+    1045,
+    6443,
+    11731
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "San Francisco"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-06",
+   "type": "place",
+   "query": "Yosemite",
+   "n_rel": 68,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    329,
+    6351,
+    7740,
+    14380,
+    5093,
+    5894,
+    7409,
+    8259,
+    908,
+    9896
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Yosemite"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-07",
+   "type": "place",
+   "query": "Maldives vacation photos",
+   "n_rel": 50,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    8861,
+    5905,
+    13547,
+    6915,
+    566,
+    1168,
+    12075,
+    2138,
+    13465,
+    5124
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "",
+    "place": "Maldives"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "place-08",
+   "type": "place",
+   "query": "Bali",
+   "n_rel": 32,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    13771,
+    14252,
+    6725,
+    10710,
+    11056,
+    3542,
+    5393,
+    3985,
+    9622,
+    4863
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Bali"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-09",
+   "type": "place",
+   "query": "photos from Antarctica",
+   "n_rel": 22,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    8575,
+    2168,
+    2004,
+    10400,
+    8452,
+    11062,
+    632,
+    10104,
+    7076,
+    1931
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Antarctica"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-10",
+   "type": "place",
+   "query": "pictures from my Switzerland trip",
+   "n_rel": 191,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 0.85,
+    "MRR": 1.0
+   },
+   "top10": [
+    2269,
+    3151,
+    13396,
+    4233,
+    14807,
+    7401,
+    13267,
+    2675,
+    13894,
+    7205
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Switzerland"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place-11",
+   "type": "place",
+   "query": "Paris",
+   "n_rel": 17,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3414,
+    3043,
+    13366,
+    11849,
+    11043,
+    14491,
+    7964,
+    8422,
+    14357,
+    4418
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "place": "Paris"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place-12",
+   "type": "place",
+   "query": "Lofoten islands",
+   "n_rel": 16,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    7528,
+    10055,
+    6757,
+    1229,
+    8385,
+    7799,
+    14161,
+    13773,
+    12567,
+    4965
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "islands",
+    "place": "Lofoten"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place-13",
+   "type": "place",
+   "query": "photos I took in Germany",
+   "n_rel": 247,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.9666666666666667,
+    "MRR": 1.0
+   },
+   "top10": [
+    4195,
+    13121,
+    5857,
+    5095,
+    2248,
+    1938,
+    9239,
+    2482,
+    44,
+    878
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "",
+    "place": "Germany"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place+object-01",
+   "type": "place+object",
+   "query": "waterfalls in Iceland",
+   "n_rel": 37,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    1835,
+    3726,
+    10849,
+    12109,
+    11410,
+    4288,
+    6278,
+    1515,
+    4155,
+    339
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "waterfalls",
+    "place": "Iceland"
+   },
+   "secs": 0.06
+  },
+  {
+   "id": "place+object-02",
+   "type": "place+object",
+   "query": "northern lights in Iceland",
+   "n_rel": 15,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.7,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    7234,
+    11515,
+    8136,
+    728,
+    10950,
+    7533,
+    5975,
+    2490,
+    13583,
+    3163
+   ],
+   "rel_ranks": [
+    0,
+    2,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13
+   ],
+   "plan": {
+    "text": "northern lights",
+    "place": "Iceland"
+   },
+   "secs": 0.05
+  },
+  {
+   "id": "place+object-03",
+   "type": "place+object",
+   "query": "beach photos from Australia",
+   "n_rel": 14,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.2,
+    "R@60": 0.7857142857142857,
+    "MRR": 0.3333333333333333
+   },
+   "top10": [
+    11582,
+    13979,
+    6020,
+    8538,
+    13616,
+    7410,
+    14647,
+    4780,
+    14891,
+    8822
+   ],
+   "rel_ranks": [
+    2,
+    6,
+    12,
+    16,
+    20,
+    25,
+    27,
+    42,
+    51,
+    55
+   ],
+   "plan": {
+    "text": "beach",
+    "place": "Australia"
+   },
+   "secs": 0.05
+  },
+  {
+   "id": "place+object-04",
+   "type": "place+object",
+   "query": "snowy mountains in Switzerland",
+   "n_rel": 41,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.7,
+    "R@60": 0.8292682926829268,
+    "MRR": 1.0
+   },
+   "top10": [
+    7695,
+    9679,
+    4894,
+    1397,
+    5307,
+    9500,
+    4075,
+    5981,
+    3385,
+    6575
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    7,
+    8,
+    10,
+    13,
+    14
+   ],
+   "plan": {
+    "text": "snowy mountains",
+    "place": "Switzerland"
+   },
+   "secs": 0.06
+  },
+  {
+   "id": "place+object-05",
+   "type": "place+object",
+   "query": "penguins in Antarctica",
+   "n_rel": 10,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    1009,
+    8452,
+    3980,
+    2153,
+    7781,
+    1039,
+    2004,
+    8166,
+    6980,
+    11062
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "penguins",
+    "place": "Antarctica"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "place+object-06",
+   "type": "place+object",
+   "query": "buildings in New York",
+   "n_rel": 22,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.8,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3115,
+    6255,
+    13257,
+    14426,
+    14486,
+    2469,
+    7323,
+    12682,
+    4901,
+    1994
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    7,
+    8,
+    9,
+    11,
+    13
+   ],
+   "plan": {
+    "text": "buildings",
+    "place": "New York"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place+object-07",
+   "type": "place+object",
+   "query": "Yosemite waterfall",
+   "n_rel": 7,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.7,
+    "R@60": 1.0,
+    "MRR": 0.5
+   },
+   "top10": [
+    620,
+    7914,
+    14328,
+    4085,
+    5093,
+    6351,
+    8259,
+    306,
+    3308,
+    593
+   ],
+   "rel_ranks": [
+    1,
+    2,
+    3,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "waterfall",
+    "place": "Yosemite"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "place+object-08",
+   "type": "place+object",
+   "query": "beaches in Bali",
+   "n_rel": 8,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.5,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    11056,
+    11710,
+    4462,
+    14252,
+    4863,
+    1336,
+    8049,
+    3542,
+    11270,
+    3985
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    3,
+    6,
+    9,
+    10,
+    15,
+    20
+   ],
+   "plan": {
+    "text": "beaches",
+    "place": "Bali"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "place+object-09",
+   "type": "place+object",
+   "query": "lakes in Canada",
+   "n_rel": 28,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.3,
+    "R@60": 0.6428571428571429,
+    "MRR": 1.0
+   },
+   "top10": [
+    14187,
+    14064,
+    5065,
+    10501,
+    5761,
+    10174,
+    12631,
+    11618,
+    7721,
+    12491
+   ],
+   "rel_ranks": [
+    0,
+    5,
+    8,
+    10,
+    12,
+    14,
+    15,
+    16,
+    21,
+    22
+   ],
+   "plan": {
+    "text": "lakes",
+    "place": "Canada"
+   },
+   "secs": 0.05
+  },
+  {
+   "id": "place+object-10",
+   "type": "place+object",
+   "query": "northern lights in Norway",
+   "n_rel": 8,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.4,
+    "R@60": 1.0,
+    "MRR": 0.5
+   },
+   "top10": [
+    1281,
+    5625,
+    14490,
+    12734,
+    13773,
+    14548,
+    6506,
+    10229,
+    918,
+    8053
+   ],
+   "rel_ranks": [
+    1,
+    5,
+    6,
+    8,
+    11,
+    12,
+    13,
+    16
+   ],
+   "plan": {
+    "text": "northern lights",
+    "place": "Norway"
+   },
+   "secs": 0.04
+  },
+  {
+   "id": "place+object-11",
+   "type": "place+object",
+   "query": "mountains in New Zealand",
+   "n_rel": 35,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.9714285714285714,
+    "MRR": 1.0
+   },
+   "top10": [
+    8877,
+    4880,
+    11744,
+    13264,
+    11239,
+    8428,
+    9217,
+    3594,
+    1510,
+    14608
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "mountains",
+    "place": "New Zealand"
+   },
+   "secs": 0.05
+  },
+  {
+   "id": "place+object-12",
+   "type": "place+object",
+   "query": "flowers in Germany",
+   "n_rel": 28,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.9642857142857143,
+    "MRR": 1.0
+   },
+   "top10": [
+    12544,
+    4935,
+    9369,
+    1732,
+    9060,
+    11533,
+    12172,
+    10369,
+    3145,
+    13665
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "flowers",
+    "place": "Germany"
+   },
+   "secs": 0.06
+  },
+  {
+   "id": "same_room-01",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 0.6666666666666666,
+    "MRR": 0.1111111111111111
+   },
+   "top10": [
+    17970,
+    20230,
+    15151,
+    15957,
+    15459,
+    20271,
+    17650,
+    18798,
+    20114,
+    17972
+   ],
+   "rel_ranks": [
+    8,
+    52
+   ],
+   "plan": null,
+   "secs": 0.01
+  },
+  {
+   "id": "same_room-02",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    18403,
+    17329,
+    18249,
+    17082,
+    19805,
+    18157,
+    17764,
+    17507,
+    16874,
+    19834
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.01
+  },
+  {
+   "id": "same_room-03",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    20224,
+    20263,
+    15212,
+    19221,
+    16306,
+    16755,
+    16751,
+    19294,
+    19330,
+    19165
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-04",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 0.3333333333333333,
+    "MRR": 0.5
+   },
+   "top10": [
+    19505,
+    18943,
+    19883,
+    17358,
+    18166,
+    17084,
+    19245,
+    16293,
+    16873,
+    19608
+   ],
+   "rel_ranks": [
+    1
+   ],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-05",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 0.3333333333333333,
+    "MRR": 0.16666666666666666
+   },
+   "top10": [
+    18475,
+    18811,
+    19371,
+    18627,
+    19106,
+    17227,
+    15229,
+    17734,
+    19716,
+    16391
+   ],
+   "rel_ranks": [
+    5
+   ],
+   "plan": null,
+   "secs": 0.01
+  },
+  {
+   "id": "same_room-06",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 2,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    16874,
+    18249,
+    15667,
+    20154,
+    18403,
+    17764,
+    18364,
+    17329,
+    16514,
+    16131
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-07",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    15315,
+    19433,
+    17979,
+    17866,
+    15362,
+    19474,
+    15442,
+    19172,
+    19943,
+    17556
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-08",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    15603,
+    19312,
+    15882,
+    18306,
+    19566,
+    19112,
+    18021,
+    16499,
+    19220,
+    19086
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-09",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    17466,
+    16363,
+    20299,
+    15209,
+    19224,
+    16277,
+    20358,
+    19215,
+    19868,
+    19417
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-10",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.3333333333333333,
+    "MRR": 0.0625
+   },
+   "top10": [
+    16261,
+    15214,
+    20041,
+    16627,
+    15213,
+    17239,
+    15718,
+    18999,
+    15387,
+    18506
+   ],
+   "rel_ranks": [
+    15
+   ],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-11",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    20371,
+    15716,
+    17466,
+    18027,
+    17376,
+    17108,
+    15115,
+    20299,
+    19890,
+    18706
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "same_room-12",
+   "type": "same_room",
+   "query": "other photos of this hotel room",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    17406,
+    15973,
+    16990,
+    18849,
+    16030,
+    18182,
+    19660,
+    17848,
+    17799,
+    16270
+   ],
+   "rel_ranks": [],
+   "plan": null,
+   "secs": 0.0
+  },
+  {
+   "id": "time-01",
+   "type": "time",
+   "query": "photos from summer 2017",
+   "n_rel": 239,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    14837,
+    2405,
+    11237,
+    12522,
+    3599,
+    13698,
+    9847,
+    4840,
+    9189,
+    2270
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2017-06-01",
+    "before": "2017-09-01"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-02",
+   "type": "time",
+   "query": "pictures from December 2018",
+   "n_rel": 556,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    2341,
+    6451,
+    3070,
+    5405,
+    6285,
+    10918,
+    11798,
+    7064,
+    9706,
+    2986
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2018-12-01",
+    "before": "2019-01-01"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-03",
+   "type": "time",
+   "query": "what did I photograph in March 2016",
+   "n_rel": 59,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3702,
+    14337,
+    9036,
+    3555,
+    5719,
+    10117,
+    11127,
+    3718,
+    8006,
+    9168
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2016-03-01",
+    "before": "2016-04-01"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-04",
+   "type": "time",
+   "query": "photos from 2014",
+   "n_rel": 270,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    2737,
+    3423,
+    10690,
+    6512,
+    6272,
+    6851,
+    12661,
+    494,
+    5678,
+    1909
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2014-01-01",
+    "before": "2015-01-01"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-05",
+   "type": "time",
+   "query": "pictures from the first week of May 2020",
+   "n_rel": 87,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    14499,
+    14998,
+    12208,
+    9324,
+    9774,
+    11155,
+    9797,
+    8388,
+    12021,
+    7516
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2020-05-01",
+    "before": "2020-05-08"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-06",
+   "type": "time",
+   "query": "photos from 2021",
+   "n_rel": 123,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 1.0,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    62,
+    13424,
+    10948,
+    6713,
+    9976,
+    985,
+    8114,
+    11259,
+    2695,
+    1088
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "plan": {
+    "text": "",
+    "after": "2021-01-01",
+    "before": "2022-01-01"
+   },
+   "secs": 0.0
+  },
+  {
+   "id": "time-07",
+   "type": "time",
+   "query": "snow photos from winter 2017",
+   "n_rel": 36,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.8611111111111112,
+    "MRR": 1.0
+   },
+   "top10": [
+    9909,
+    7097,
+    7259,
+    2500,
+    2429,
+    14944,
+    14222,
+    5964,
+    4882,
+    11069
+   ],
+   "rel_ranks": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11
+   ],
+   "plan": {
+    "text": "snow",
+    "after": "2016-12-01",
+    "before": "2017-03-01"
+   },
+   "secs": 0.03
+  },
+  {
+   "id": "time-08",
+   "type": "time",
+   "query": "beach photos from summer 2019",
+   "n_rel": 34,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 1.0,
+    "P@10": 0.2,
+    "R@60": 0.4411764705882353,
+    "MRR": 0.25
+   },
+   "top10": [
+    11429,
+    14111,
+    2031,
+    7300,
+    6047,
+    5579,
+    14192,
+    9881,
+    1079,
+    8804
+   ],
+   "rel_ranks": [
+    3,
+    8,
+    10,
+    14,
+    17,
+    20,
+    22,
+    25,
+    33,
+    34
+   ],
+   "plan": {
+    "text": "beach",
+    "after": "2019-06-01",
+    "before": "2019-09-01"
+   },
+   "secs": 0.01
+  },
+  {
+   "id": "time-09",
+   "type": "time",
+   "query": "mountain pictures from autumn 2018",
+   "n_rel": 80,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.6833333333333333,
+    "MRR": 1.0
+   },
+   "top10": [
+    7235,
+    2689,
+    9548,
+    6377,
+    14125,
+    764,
+    14914,
+    9437,
+    3041,
+    9914
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "mountain",
+    "after": "2018-09-01",
+    "before": "2018-12-01"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "time-10",
+   "type": "time",
+   "query": "sunsets I shot in 2020",
+   "n_rel": 180,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.8166666666666667,
+    "MRR": 1.0
+   },
+   "top10": [
+    8319,
+    3829,
+    10793,
+    8822,
+    13732,
+    3543,
+    367,
+    1952,
+    4466,
+    14761
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10
+   ],
+   "plan": {
+    "text": "sunsets",
+    "after": "2020-01-01",
+    "before": "2021-01-01"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "time-11",
+   "type": "time",
+   "query": "flowers from spring 2019",
+   "n_rel": 148,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.7,
+    "R@60": 0.8,
+    "MRR": 1.0
+   },
+   "top10": [
+    1585,
+    10813,
+    2337,
+    12265,
+    4935,
+    7871,
+    3205,
+    3386,
+    14800,
+    14273
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    4,
+    6,
+    7,
+    9,
+    10,
+    12,
+    15
+   ],
+   "plan": {
+    "text": "flowers",
+    "after": "2019-03-01",
+    "before": "2019-06-01"
+   },
+   "secs": 0.01
+  },
+  {
+   "id": "time-12",
+   "type": "time",
+   "query": "dog photos from 2020",
+   "n_rel": 134,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.9,
+    "R@60": 0.8666666666666667,
+    "MRR": 1.0
+   },
+   "top10": [
+    1726,
+    13787,
+    5184,
+    13208,
+    2399,
+    10300,
+    7870,
+    10222,
+    6752,
+    8354
+   ],
+   "rel_ranks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10
+   ],
+   "plan": {
+    "text": "dog",
+    "after": "2020-01-01",
+    "before": "2021-01-01"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-01",
+   "type": "text_in_photo",
+   "query": "the sign warning about rattlesnakes",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    11487,
+    3096,
+    11336,
+    11774,
+    8440,
+    1236,
+    5204,
+    10866,
+    12701,
+    13308
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "the sign warning about rattlesnakes"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-02",
+   "type": "text_in_photo",
+   "query": "parking sign that says violators will be towed",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    8440,
+    11487,
+    152,
+    6329,
+    18899,
+    1237,
+    3096,
+    2248,
+    11774,
+    1695
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "parking sign that says violators will be towed"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-03",
+   "type": "text_in_photo",
+   "query": "coin laundry sign",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    1547,
+    8907,
+    16817,
+    20589,
+    9046,
+    19778,
+    16258,
+    12541,
+    3654,
+    21197
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "coin laundry sign"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-04",
+   "type": "text_in_photo",
+   "query": "caution sign about avalanches",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3096,
+    13158,
+    5267,
+    8044,
+    11487,
+    14222,
+    14937,
+    1679,
+    11774,
+    14946
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "caution sign about avalanches"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-05",
+   "type": "text_in_photo",
+   "query": "a page from the Gospel of Matthew",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    3284,
+    14700,
+    9898,
+    5902,
+    4051,
+    945,
+    2611,
+    13015,
+    4744,
+    3474
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "a page from the Gospel of Matthew"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-06",
+   "type": "text_in_photo",
+   "query": "extinction rebellion protest sign",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    834,
+    9636,
+    6080,
+    14432,
+    10898,
+    13078,
+    7143,
+    1899,
+    14799,
+    13780
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "extinction rebellion protest sign"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-07",
+   "type": "text_in_photo",
+   "query": "climate protest sign saying our planet is getting hotter",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    9069,
+    7143,
+    8668,
+    6703,
+    9226,
+    13780,
+    14432,
+    10898,
+    9636,
+    1899
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "climate protest sign saying our planet is getting hotter"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-08",
+   "type": "text_in_photo",
+   "query": "snack sticks package",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    9008,
+    14463,
+    5702,
+    7100,
+    4074,
+    14605,
+    2487,
+    21022,
+    13358,
+    9013
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "snack sticks package"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-09",
+   "type": "text_in_photo",
+   "query": "Marlboro cigarette ad",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21046,
+    21022,
+    9898,
+    8150,
+    4726,
+    14639,
+    21031,
+    21154,
+    6042,
+    1795
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "Marlboro cigarette ad"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-10",
+   "type": "text_in_photo",
+   "query": "Tissot watch sign",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20880,
+    13371,
+    10795,
+    1563,
+    13992,
+    10844,
+    13910,
+    13346,
+    9725,
+    14865
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "Tissot watch sign"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-11",
+   "type": "text_in_photo",
+   "query": "sign saying no child left behind",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    20801,
+    20631,
+    1969,
+    10898,
+    1237,
+    9636,
+    834,
+    4143,
+    14432,
+    11774
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "sign saying no child left behind"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-12",
+   "type": "text_in_photo",
+   "query": "sign saying 9-11 was an inside job",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21059,
+    268,
+    14432,
+    4143,
+    20750,
+    18899,
+    3654,
+    21106,
+    7087,
+    12134
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "sign saying 9-11 was an inside job"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-13",
+   "type": "text_in_photo",
+   "query": "gelati tabacchi shop sign",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    21174,
+    3654,
+    2522,
+    2248,
+    20434,
+    13279,
+    8907,
+    14226,
+    21008,
+    3164
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "gelati tabacchi shop sign"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-14",
+   "type": "text_in_photo",
+   "query": "framed print of Lookout Point, Hot Springs, signed Beaman",
+   "n_rel": 3,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@10": 0.0,
+    "P@10": 0.0,
+    "R@60": 0.0,
+    "MRR": 0.0
+   },
+   "top10": [
+    19480,
+    16350,
+    18482,
+    17470,
+    17264,
+    18857,
+    18354,
+    314,
+    20006,
+    544
+   ],
+   "rel_ranks": [],
+   "plan": {
+    "text": "framed print of Lookout Point, Hot Springs, signed Beaman"
+   },
+   "secs": 0.02
+  },
+  {
+   "id": "text_in_photo-15",
+   "type": "text_in_photo",
+   "query": "do not disturb sign",
+   "n_rel": 1,
+   "rel_coverage": 1.0,
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@10": 1.0,
+    "P@10": 0.1,
+    "R@60": 1.0,
+    "MRR": 1.0
+   },
+   "top10": [
+    10516,
+    19528,
+    20077,
+    19261,
+    16817,
+    11774,
+    17807,
+    18221,
+    19778,
+    268
+   ],
+   "rel_ranks": [
+    0
+   ],
+   "plan": {
+    "text": "do not disturb sign"
+   },
+   "secs": 0.02
+  }
+ ]
+}
