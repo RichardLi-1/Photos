@@ -1,0 +1,7 @@
+# Python 3.11 venv at ml/.venv (see README "ml"). Conversion runs offline from the HF cache (timm/ViT-B-16-SigLIP2-384).
+coremltools==9.0
+numpy==1.26.4
+open_clip_torch==3.2.0
+tokenizers==0.22.1   # reference tokenizer for SigLIP2 (Gemma BPE); export + parity checks
+torch==2.7.0
+torchvision==0.22.0
