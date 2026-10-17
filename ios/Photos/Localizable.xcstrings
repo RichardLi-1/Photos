@@ -1,0 +1,201 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld best matches · %lld ms · on this iPhone": {
+      "extractionState": "manual"
+    },
+    "Add words to refine": {
+      "extractionState": "extracted_with_value"
+    },
+    "Choose Photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "Clear search": {
+      "extractionState": "extracted_with_value"
+    },
+    "Continue": {
+      "extractionState": "extracted_with_value"
+    },
+    "Done": {
+      "extractionState": "extracted_with_value"
+    },
+    "Find any photo by describing it — “dog on the beach”, “receipt from March” — or by showing a similar photo. Everything is analysed on this iPhone and never leaves it.": {
+      "extractionState": "extracted_with_value"
+    },
+    "In common with that photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "In common with your photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "In this photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "Index": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing %lld of %lld": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing paused": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing paused in Low Power Mode": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing paused while iPhone cools down": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing paused: low battery": {
+      "extractionState": "extracted_with_value"
+    },
+    "Indexing paused: storage almost full": {
+      "extractionState": "extracted_with_value"
+    },
+    "Library": {
+      "extractionState": "extracted_with_value"
+    },
+    "Library Access": {
+      "extractionState": "extracted_with_value"
+    },
+    "Look Up Place Names": {
+      "extractionState": "extracted_with_value"
+    },
+    "Looking…": {
+      "extractionState": "extracted_with_value"
+    },
+    "Matches “%@”": {
+      "extractionState": "extracted_with_value"
+    },
+    "Models unavailable: %@": {
+      "extractionState": "extracted_with_value"
+    },
+    "More Like This": {
+      "extractionState": "extracted_with_value"
+    },
+    "No matches": {
+      "extractionState": "extracted_with_value"
+    },
+    "Not available on this iPhone": {
+      "extractionState": "extracted_with_value"
+    },
+    "Nothing specific — mostly the overall look.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Off by default. When on, the locations of your photos are sent to Apple to find place names, so you can search for “Paris” or “Lisbon”. Nothing else ever leaves this iPhone.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Open": {
+      "extractionState": "extracted_with_value"
+    },
+    "Open Photos Access in Settings": {
+      "extractionState": "extracted_with_value"
+    },
+    "Open Settings": {
+      "extractionState": "extracted_with_value"
+    },
+    "Opens indexing settings": {
+      "extractionState": "extracted_with_value"
+    },
+    "Overall look": {
+      "extractionState": "extracted_with_value"
+    },
+    "Pause Indexing": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photo Unavailable": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photo, %@": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photos access is turned off. You can allow all photos, or only the ones you choose, in Settings.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photos indexed": {
+      "extractionState": "extracted_with_value"
+    },
+    "Photos that are only in iCloud are never downloaded; their on-device previews are used instead.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Places": {
+      "extractionState": "extracted_with_value"
+    },
+    "Preparing your library…": {
+      "extractionState": "extracted_with_value"
+    },
+    "Privacy": {
+      "extractionState": "extracted_with_value"
+    },
+    "Results": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search %lld photos": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search Your Photos": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search covers your whole library.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search isn’t available yet": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search photos": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search with a photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "Search, indexing and text recognition run entirely on this iPhone. No account, no analytics, no network.": {
+      "extractionState": "extracted_with_value"
+    },
+    "Searching by your photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "Searching…": {
+      "extractionState": "extracted_with_value"
+    },
+    "Select More Photos": {
+      "extractionState": "extracted_with_value"
+    },
+    "Select More Photos…": {
+      "extractionState": "extracted_with_value"
+    },
+    "Settings": {
+      "extractionState": "extracted_with_value"
+    },
+    "Shows why this photo matched": {
+      "extractionState": "extracted_with_value"
+    },
+    "Similar Photos": {
+      "extractionState": "extracted_with_value"
+    },
+    "Take Photo": {
+      "extractionState": "extracted_with_value"
+    },
+    "That photo isn’t indexed yet": {
+      "extractionState": "extracted_with_value"
+    },
+    "This photo isn’t indexed yet.": {
+      "extractionState": "extracted_with_value"
+    },
+    "You’ve given access to selected photos only. Search covers just those.": {
+      "extractionState": "extracted_with_value"
+    },
+    "iOS will ask whether to share all photos or only some.": {
+      "extractionState": "extracted_with_value"
+    },
+    "“%@” is in the place name": {
+      "extractionState": "extracted_with_value"
+    },
+    "“%@” is written in the photo": {
+      "extractionState": "extracted_with_value"
+    }
+  },
+  "version": "1.0"
+}

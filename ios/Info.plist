@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Merged with the build-setting generated Info.plist (GENERATE_INFOPLIST_FILE = YES). Kept outside the
+	     synchronized folders so it is not copied as a resource. -->
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>RLProjects.Photos.index</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
+	</array>
+	<!-- The app offers "Select More Photos" itself (toolbar + Settings), so skip iOS's automatic re-prompt. -->
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+</dict>
+</plist>
