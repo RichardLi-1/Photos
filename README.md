@@ -35,7 +35,7 @@ We didn't pick these models on vibes. Every claim below comes from benchmarks in
 
 ### What's in the repo
 
-The heart is [`search/`](search): the Python engine (`photosearch/`), the local server that the [`web/`](web) demo talks to, the agent tools and mock agent, model training in `train/`, and 287 tests that run in about ten seconds without loading a model (`make test`). [`ios/`](ios) and [`android/`](android) are the same idea on a phone: SigLIP2 converted to Core ML and ONNX ([`ml/`](ml)), indexing in the background, and no network at all. [`backend/`](backend) is the original API stub, kept for history.
+The heart is [`search/`](search): the Python engine (`photosearch/`), the local server that the [`web/`](web) demo talks to, the agent tools and mock agent, model training in `train/`, and 288 tests that run in about ten seconds without loading a model (`make test`). [`ios/`](ios) and [`android/`](android) are the same idea on a phone: SigLIP2 converted to Core ML and ONNX ([`ml/`](ml)), indexing in the background, and no network at all. [`desktop/`](desktop) is a Mac app you can [download](desktop/README.md) and try without an app store: the same Swift core, sandboxed without network permission. [`backend/`](backend) is the original API stub, kept for history.
 
 The longer story lives in [`docs/`](docs): [architecture](docs/architecture.md), [privacy](docs/privacy.md), [development](docs/development.md), [models](docs/ml.md), [iOS](docs/ios.md), and [data & licenses](docs/data-and-licenses.md).
 
@@ -50,6 +50,6 @@ We'd rather tell you than have you find out:
 
 ### Two ground rules
 
-**Nothing leaves the device.** The server binds to `127.0.0.1` and refuses requests from other websites. The models run offline after setup. The iOS app has no network use, and the Android app doesn't even request the internet permission.
+**Nothing leaves the device.** The server binds to `127.0.0.1` and refuses requests from other websites. The models run offline after setup. The iOS app has no network use, and the Android app doesn't even request the internet permission. Only the hosted web demo records visits ([deploy.md](docs/deploy.md#analytics-hosted-demo-only)).
 
 **Be kind to the machine.** This was built on a 16 GB Mac that kernel-panicked when too many models ran at once. So every model load goes through a shared budget ([`guard.py`](search/photosearch/guard.py)), and a [watchdog](search/watchdog.py) steps in before disk or memory run out. Run heavy jobs one at a time, and let the guard queue the rest.
