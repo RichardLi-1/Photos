@@ -1,0 +1,34 @@
+# Fly.io (fallback host). `fly launch --no-deploy --copy-config` once, then `fly deploy` from the staged dir.
+# shared-cpu-1x / 1 GB, scale to zero: billed only while a machine runs (+ rootfs storage while stopped).
+app = "photos-demo"            # change: must be globally unique; also update DEMO_ALLOWED_HOSTS below
+primary_region = "iad"         # NA/EU egress is the cheapest ($0.02/GB); pick the region nearest your visitors
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DEMO_ALLOWED_HOSTS = "photos-demo.fly.dev"
+  DEMO_CLIENT_IP_HEADER = "fly-client-ip"   # set by Fly's proxy; not client-controllable
+  ORT_THREADS = "1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 8
+    hard_limit = 16
+
+[[http_service.checks]]
+  grace_period = "20s"
+  interval = "30s"
+  method = "GET"
+  path = "/healthz"
+  timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"

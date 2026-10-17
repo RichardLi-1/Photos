@@ -28,10 +28,17 @@ export type Explain = {
   place_hits: string[];
   place: string | null;
   date: string | null;
+  credit?: string | null;  // public demo only: "creator · CC BY 2.0" (licensed photos must be attributed)
 };
 export type MatchContext = { q?: string; ref?: number; tags?: string[] };
 export type Page = { ids: number[]; total: number };
-export type Stats = { photos: number; embedded: number; albums: Record<string, number>; date_range?: [string | null, string | null] };
+export type Stats = {
+  photos: number;
+  embedded: number;
+  albums: Record<string, number>;
+  date_range?: [string | null, string | null];
+  demo?: { ask: boolean; upload: boolean; agent_writes: boolean; credits: string };  // hosted demo only (search/demo)
+};
 
 /** /api/ask: a local VLM plans the search, then looks at the top hits and keeps the true matches (search/photosearch/ask.py). */
 export type AskPlan = {

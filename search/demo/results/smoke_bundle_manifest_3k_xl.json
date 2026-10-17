@@ -1,0 +1,36 @@
+{
+ "built": "2026-10-15T18:36:04",
+ "photos": 3000,
+ "publishable": false,
+ "source_index": "index-xl",
+ "thumb": "avif:384:50",
+ "vectors": "int8 per-dim scale, 768-d",
+ "place": "hotel_head.pt applied at build time; only its outputs (Z) ship, not the weights",
+ "credited": 0,
+ "albums": {
+  "coco": 217,
+  "flickr": 40,
+  "hotel-rooms": 215,
+  "places365": 1501,
+  "unsplash": 1027
+ },
+ "sizes_mb": {
+  "CREDITS.csv": 0.0,
+  "concepts.npz": 0.46,
+  "library.sqlite": 0.41,
+  "models/calibration.json": 0.0,
+  "models/siglip2_text_q8.onnx": 87.18,
+  "models/token_embed.bin": 138.67,
+  "models/tokenizer.json.gz": 5.33,
+  "place.npz": 1.54,
+  "thumbs.npz": 0.06,
+  "thumbs.pack": 23.93,
+  "vectors.npz": 2.33
+ },
+ "total_mb": 259.9,
+ "licenses": {
+  "model": "SigLIP2 (Apache-2.0, timm/ViT-B-16-SigLIP2-384)",
+  "photos": "per CREDITS.csv",
+  "places": "GeoNames (CC BY 4.0) when fetch_pass.py --geonames was used"
+ }
+}

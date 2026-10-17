@@ -1,0 +1,9 @@
+# Public demo server (search/demo/demo_server.py): no torch, no transformers, no open_clip.
+# Pins match search/requirements.txt where shared; onnxruntime is the CPU wheel.
+fastapi==0.143.1
+uvicorn==0.54.0
+numpy==2.4.6
+onnxruntime==1.31.0
+pillow==12.3.0      # imported by photosearch.search/library (no image decoding at runtime)
+pycountry==26.2.16  # place-name aliases in 29 languages (photosearch/places.py)
+ftfy==6.3.1         # open_clip's text clean, for identical tokens

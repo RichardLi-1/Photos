@@ -62,6 +62,11 @@ export function MatchCard({ id, anchor, ctx, onClose, onMore }: Props) {
                 {[data.place, data.date?.slice(0, 10)].filter(Boolean).join(" · ")}
               </div>
             )}
+            {data.credit && (
+              <div className="mt-1 truncate text-[11px] text-black/50 dark:text-white/55" title={`Photo: ${data.credit}`}>
+                📷 {data.credit} · <a href="/credits" className="underline">credits</a>
+              </div>
+            )}
             <div className="mt-2 flex gap-4">
               <button onClick={() => onMore(id)} className="font-medium text-[var(--color-accent)]">More like this →</button>
               <button onClick={() => onMore(id, true)} title="Other photos of this same room or place (our trained model)"
