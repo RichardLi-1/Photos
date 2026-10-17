@@ -1,0 +1,54 @@
+{
+ "images": 20,
+ "texts": 20,
+ "image_fp32_onnx": {
+  "min": 0.9999999403953552,
+  "mean": 1.0
+ },
+ "image_q8_onnx": {
+  "min": 0.9961485266685486,
+  "mean": 0.9989449381828308
+ },
+ "text_fp32_onnx": {
+  "min": 0.9999999403953552,
+  "mean": 1.0
+ },
+ "text_q8_onnx+q8_table": {
+  "min": 0.9987846612930298,
+  "mean": 0.9994512796401978
+ },
+ "text_q8_onnx+fp32_table": {
+  "min": 0.9993884563446045,
+  "mean": 0.9996949434280396
+ },
+ "top1_agreement_text_to_image": 0.9,
+ "sizes_mb": {
+  "siglip2_image_q8.onnx": 97.4,
+  "siglip2_text_q8.onnx": 87.2,
+  "siglip2_token_embed_q8.bin": 197.6
+ },
+ "image_q8_android_preprocess_bilinear_vs_ref": {
+  "min": 0.982695460319519,
+  "mean": 0.9914255142211914
+ },
+ "image_q8_android_preprocess_bicubic_vs_ref": {
+  "min": 0.9961485266685486,
+  "mean": 0.9989449381828308
+ },
+ "android_preprocess_bilinear_decode384_vs_openclip_phone_size": {
+  "min": 0.9494224786758423,
+  "mean": 0.9896072328090668
+ },
+ "android_preprocess_bicubic_decode384_vs_openclip_phone_size": {
+  "min": 0.9885790944099426,
+  "mean": 0.9961513221263886
+ },
+ "android_preprocess_bilinear_decode768_vs_openclip_phone_size": {
+  "min": 0.9668272733688354,
+  "mean": 0.9910404562950135
+ },
+ "android_preprocess_bicubic_decode768_vs_openclip_phone_size": {
+  "min": 0.9955439567565918,
+  "mean": 0.9986924141645431
+ }
+}
