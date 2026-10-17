@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photo Search</string>
+    <string name="search_hint">Search photos</string>
+    <string name="search_hint_n">Search %1$d photos</string>
+    <string name="refine_hint">Add words to refine (optional)</string>
+    <string name="search_with_photo">Search with a photo</string>
+    <string name="searching_by_photo">Searching by a photo</string>
+    <string name="clear">Clear search</string>
+    <string name="settings">Settings</string>
+    <string name="photo_desc">Photo, %1$s</string>
+    <string name="unknown_date">date unknown</string>
+    <string name="why_matched">show why it matched</string>
+    <string name="nothing_specific">Nothing specific — mostly the overall look.</string>
+    <string name="written_in_photo">“%1$s” is written in the photo</string>
+    <string name="more_like_this">More like this</string>
+    <string name="open">Open</string>
+    <string name="no_results">No matches yet. Indexing may still be running.</string>
+    <string name="no_photos">No photos to show.</string>
+    <string name="access_title">Search your photos, privately</string>
+    <string name="access_body">Photo Search looks at your photos on this phone to find them by what they show. Nothing is uploaded: the app has no internet access. You can allow all photos or pick just some.</string>
+    <string name="allow_access">Allow access</string>
+    <string name="choose_photos">Choose more photos</string>
+    <string name="open_settings">Open app settings</string>
+    <string name="library">Library</string>
+    <string name="access_full">Access to all photos.</string>
+    <string name="access_partial">Access to selected photos only. Only those can be searched.</string>
+    <string name="access_none">No access to photos.</string>
+    <string name="index">Index</string>
+    <string name="index_counts">%1$d of %2$d photos indexed</string>
+    <string name="ocr_counts">Text read in %1$d of %2$d photos</string>
+    <string name="index_now">Index now</string>
+    <string name="pause">Pause</string>
+    <string name="only_charging">Index only while charging</string>
+    <string name="only_charging_body">Background indexing always waits for battery not low.</string>
+    <string name="ocr_title">Read text in photos</string>
+    <string name="ocr_body">Finds signs, menus and documents by their words. Uses Google ML Kit on this device. ML Kit tries to send usage statistics to Google; this app has no internet permission, so they can\'t leave your phone. Off by default.</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_body">Everything happens on this device: the search model, the index and the text reading. The app has no internet permission, no analytics and no cloud backup of its index.</string>
+    <string name="channel_indexing">Indexing</string>
+    <string name="indexing_title">Indexing photos on this device</string>
+    <string name="indexing_progress">%1$d of %2$d</string>
+</resources>
