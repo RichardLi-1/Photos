@@ -178,6 +178,17 @@ def test_album_create_then_undo_deletes_it(T):
     assert "Red" not in _albums(idx) and "deleted" in u["reply"]
 
 
+def test_refused_step_reads_in_the_present_tense(T):
+    def refuse(name, args=None, actor="agent"):  # the public demo's tool gate (search/demo/demo_server.py)
+        if name in M.READ_ONLY:
+            return tools.call(name, args, actor=actor)
+        return {"ok": False, "error": f"{name.replace('_', ' ')} is turned off"}
+    r = M.Executor(call=refuse).message("make an album of my red photos")
+    assert r["reply"].startswith("Couldn’t make the album “Red”: create album is turned off"), r["reply"]
+    assert M._couldnt("Added them to “Trip”", "x") == "Couldn’t add them to “Trip”: x"
+    assert M._couldnt("Move them to Recently Deleted", "x") == "Couldn’t move them to Recently Deleted: x"
+
+
 def test_add_to_existing_album_undo_removes_only_new(T):
     ex, idx = T
     ids = idx["ids"]

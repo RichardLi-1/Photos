@@ -508,6 +508,17 @@ def _new_id(prefix: str) -> str:
     return f"{prefix}_{secrets.token_urlsafe(9)}"
 
 
+# done steps read in the past tense ("Made the album “Beach”"); a failed one reads "Couldn’t make the album “Beach”"
+_BASE_VERB = {"made": "make", "found": "find", "added": "add", "renamed": "rename", "restored": "restore",
+              "opened": "open", "listed": "list", "searched": "search", "looked": "look"}
+
+
+def _couldnt(description: str, error) -> str:
+    verb, _, rest = description.partition(" ")
+    verb = _BASE_VERB.get(verb.lower(), verb[:1].lower() + verb[1:])
+    return f"Couldn’t {verb}{' ' + rest if rest else ''}: {error}"
+
+
 class Executor:
     """Runs a Planner's plan through tools.call with the safety policy:
 
@@ -703,7 +714,7 @@ class Executor:
                 outs.append(o)
                 if not o.get("ok"):
                     entry["status"] = "failed"
-                    reply, stopped = f"Couldn’t {st.description[:1].lower() + st.description[1:]}: {o.get('error')}", True
+                    reply, stopped = _couldnt(st.description, o.get("error")), True
                     continue
                 live = [c for c in calls if c.token]
                 entry["status"] = "pending" if live else "skipped"
@@ -716,7 +727,7 @@ class Executor:
             ran.append((st.tool, o))
             if not o.get("ok"):
                 entry["status"] = "failed"
-                reply, stopped = f"Couldn’t {st.description[:1].lower() + st.description[1:]}: {o.get('error')}", True
+                reply, stopped = _couldnt(st.description, o.get("error")), True
                 continue
             entry["status"] = "done"
             undo_calls += self._undo_for(_Call(st.tool, args, extra=pre), o)
