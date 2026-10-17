@@ -10,6 +10,7 @@ import { MatchCard } from "./components/MatchCard";
 import { SearchBar } from "./components/SearchBar";
 import { Wall } from "./components/Wall";
 import { emptyMessage, parsedChips } from "./parsed";
+import { startVisits } from "./visits";
 
 const PAGE = 400;
 const STRIPES = new URLSearchParams(location.search).has("stripes");  // debug: high-contrast backdrop for the glass
@@ -64,6 +65,8 @@ export default function App() {
   }, []);
 
   const stats = useQuery({ queryKey: ["stats"], queryFn: api.stats, staleTime: 60_000 });
+  // Visitor tracking runs only on the hosted demo (its /api/stats has `demo`); the local app never sends anything.
+  useEffect(() => { if (stats.data?.demo) startVisits(); }, [stats.data]);
   const browse = useInfiniteQuery({
     queryKey: ["browse"],
     queryFn: ({ pageParam }) => api.browse(pageParam, PAGE),
