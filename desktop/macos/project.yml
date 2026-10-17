@@ -1,0 +1,98 @@
+# Photo Search for macOS. Generate the Xcode project with `xcodegen generate` (desktop/macos/scripts/build.sh does it).
+# The engine is shared with the iOS app: the Swift files below are compiled straight from ios/Core (not copied), and
+# the Core ML models are the ones ml/convert_siglip2.py writes to ios/Core/Models/.
+name: PhotoSearch
+options:
+  deploymentTarget:
+    macOS: "15.0"          # the SigLIP2 mlprograms target iOS 18 / macOS 15
+  createIntermediateGroups: true
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+    ARCHS: arm64             # Apple Silicon (Neural Engine); the only architecture tested
+    ONLY_ACTIVE_ARCH: NO
+    DEAD_CODE_STRIPPING: YES
+targets:
+  PhotoSearch:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+      # Shared engine from the iOS app (platform-neutral parts only).
+      - path: ../../ios/Core/ML
+        group: Shared/ML
+      - path: ../../ios/Core/Storage
+        group: Shared/Storage
+      - path: ../../ios/Core/Search
+        group: Shared/Search
+      - path: ../../ios/Core/Indexing/TextRecognizer.swift
+        group: Shared/Indexing
+      # Models: compiled to .mlmodelc by Xcode, bundled so the app never downloads anything.
+      - path: ../../ios/Core/Models/SigLIP2ImageEncoder.mlpackage
+        group: Models
+      - path: ../../ios/Core/Models/SigLIP2TextEncoder.mlpackage
+        group: Models
+      - path: ../../ios/Core/Models/siglip2_tokenizer.json
+        group: Models
+        buildPhase: resources
+      - path: ../../ios/Core/Models/siglip2_merges.bin
+        group: Models
+        buildPhase: resources
+      - path: ../../ios/Core/Models/siglip2_meta.json
+        group: Models
+        buildPhase: resources
+      - path: ../../ios/Core/Models/siglip2_concepts.json
+        group: Models
+        buildPhase: resources
+      - path: ../../ios/Core/Models/siglip2_concepts.f16
+        group: Models
+        buildPhase: resources
+      # Our trained "same place" head (ml/export_place_head.py).
+      - path: Models/place_head.f32
+        group: Models
+        buildPhase: resources
+      - path: Models/place_head.json
+        group: Models
+        buildPhase: resources
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Photo Search
+        CFBundleName: Photo Search
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        LSApplicationCategoryType: public.app-category.photography
+        LSMinimumSystemVersion: "15.0"
+        NSHumanReadableCopyright: "Private, on-device photo search. Nothing leaves this Mac."
+        NSPhotoLibraryUsageDescription: "Photo Search reads your photos on this Mac to make them searchable by description. Nothing is uploaded; iCloud originals are never downloaded."
+        ITSAppUsesNonExemptEncryption: false
+        NSSupportsAutomaticTermination: false
+    entitlements:
+      path: Resources/PhotoSearch.entitlements
+      properties:
+        # App Sandbox with NO network entitlements (no com.apple.security.network.client/server): the kernel refuses
+        # every socket connection, so photos, the index and queries cannot leave the Mac.
+        com.apple.security.app-sandbox: true
+        com.apple.security.files.user-selected.read-only: true   # folders picked in the Open panel or dropped, read-only
+        com.apple.security.files.bookmarks.app-scope: true       # remember those folders across launches
+        com.apple.security.personal-information.photos-library: true  # optional Photos library indexing (asks first)
+    settings:
+      base:
+        PRODUCT_NAME: PhotoSearch
+        PRODUCT_BUNDLE_IDENTIFIER: app.photosearch.mac
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        COREML_CODEGEN_LANGUAGE: None      # the encoder loads models by name; no generated classes
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "-"            # ad-hoc; replace with "Developer ID Application" to notarize
+        DEVELOPMENT_TEAM: ""
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO   # no get-task-allow in Debug either: what we test is what we ship
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_STRICT_CONCURRENCY: minimal
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
