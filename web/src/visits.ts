@@ -1,7 +1,8 @@
 // Visitor tracking for the hosted demo only (photos-demo.fly.dev), ported from Transit Planner's page-view tracker.
 // startVisits() runs only once /api/stats returns a `demo` object, which the local server never does: the local app,
-// iOS, Android and desktop send nothing. One card per page load (+ one for a quick bounce) goes to /api/track; the demo
-// server (search/demo/visits.py) adds IP + approximate location and posts to Discord, so webhook URLs never ship here.
+// iOS, Android and desktop send nothing. One card per page load goes to /api/track with raw human signals; the demo
+// server (search/demo/visits.py) scores those, adds IP + rough location and posts to Discord, so webhook URLs never
+// ship here.
 // Never sent: search text (the app keeps it in ?q=), uploaded photos, photo IDs, agent messages.
 
 // Referral links: ?l, ?r, ... (any value). Edit freely.
@@ -27,8 +28,10 @@ const AI_ASSISTANT_HOSTS: Record<string, string> = {
 // The app's own URL state (App.tsx): search text and debug flags. Never a referral, never reported.
 const APP_PARAMS = ["q", "stripes", "noglass"];
 
-const SKIP_KEY = "skip_tracking", SKIP_PARAM = "m", REFERRAL_KEY = "referral_source";
+const SKIP_KEY = "skip_tracking", SKIP_PARAM = "m", REFERRAL_KEY = "referral_source", REFERRAL_AT_KEY = "referral_source_at";
+const HUMAN_SEEN_KEY = "human_seen";  // sessionStorage: this tab already showed real input
 const BOUNCE_MS = 10_000;
+const VISIT_DELAY_MS = 5_000;  // give the human score a few seconds of input before sending
 
 export type VisitType = "regular_visit" | "referral_visit" | "ai_referral_visit";
 export type Card = { event: string; meta: Record<string, string>; webhookType: VisitType };
@@ -62,6 +65,7 @@ function describeUtm(p: URLSearchParams): string | null {
 export type Landing = {
   source: string | null;  // referral to report (fresh, or the one stored from an earlier visit)
   fresh: boolean;         // this landing set it: store it
+  since: string | null;   // not fresh: when this browser first arrived with it (ISO), if known
   params: URLSearchParams;
   ai: string | null;      // this landing came from an AI assistant (never the stored referral)
   referrerHost: string | null;
@@ -69,7 +73,7 @@ export type Landing = {
 };
 
 /** Referral order: short params, then utm_source, then an AI referrer (only with no params), then the stored source. */
-export function classify(search: string, referrer: string, stored: string | null): Landing {
+export function classify(search: string, referrer: string, stored: string | null, storedAt: string | null = null): Landing {
   const params = new URLSearchParams(search);
   const optOut = params.has(SKIP_PARAM);
   for (const k of [SKIP_PARAM, ...APP_PARAMS]) params.delete(k);
@@ -82,7 +86,7 @@ export function classify(search: string, referrer: string, stored: string | null
   try { referrerHost = referrer ? new URL(referrer).hostname : null; } catch { /* malformed: none */ }
   const ai = aiAssistantFromHost(params.get("utm_source")) ?? aiAssistantFromHost(referrerHost);
   if (ai && !params.toString()) { source = ai; fresh = true; }
-  return { source, fresh, params, ai, referrerHost, optOut };
+  return { source, fresh, since: fresh || !source ? null : storedAt, params, ai, referrerHost, optOut };
 }
 
 function platformOf(ua: string, platform: string) {
@@ -90,24 +94,32 @@ function platformOf(ua: string, platform: string) {
     : platform.includes("Win") ? "Windows" : platform.includes("Linux") ? "Linux" : "Unknown";
 }
 
-/** The page-view card. Params with no known referral are named after their first value (else key). */
-export function visitCard(l: Landing, v: { path: string; url: string; referrer: string; ua: string; platform: string }): Card {
+export type VisitInfo = { path: string; url: string; referrer: string; ua: string; platform: string; timeZone?: string };
+
+/** The page-view card, or with bounceMs the one card for a visitor who left within BOUNCE_MS. Params with no known
+ *  referral are named after their first value (else key). */
+export function visitCard(l: Landing, v: VisitInfo, bounceMs?: number): Card {
   const raw = l.params.toString();
   const bot = /bot|crawler|spider/i.test(v.ua);
   const [k, val] = l.params.entries().next().value ?? [];
+  const who = l.source ? `${l.fresh ? "New" : "Returning"} visitor from **${l.source}**`
+    : raw ? `New visitor — CUSTOM REFERRAL from **${(val || k || "unknown").toUpperCase()}**`
+    : `New visitor on ${v.path}`;
   const event = bot ? `🤖 Bot/crawler on ${v.path}`
-    : l.source ? `👀 New visitor from **${l.source}**`
-    : raw ? `👀 New visitor — CUSTOM REFERRAL from **${(val || k || "unknown").toUpperCase()}**`
-    : `👀 New visitor on ${v.path}`;
+    : bounceMs === undefined ? `👀 ${who}` : `👋 ${who} left after ${Math.round(bounceMs / 1000)}s`;
+  const since = l.since && !Number.isNaN(Date.parse(l.since))
+    ? ` on ${new Date(l.since).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : "";
   return {
     event,
     webhookType: l.ai ? "ai_referral_visit" : l.source || raw ? "referral_visit" : "regular_visit",
     meta: {
       "🖥️ Device": `${/Mobi|Android|iPhone|iPad/i.test(v.ua) ? "📱 Mobile" : "🖥️ Desktop"} · ${platformOf(v.ua, v.platform)}`,
-      "🛤️ Path": v.path,
       "🔗 URL": scrubUrl(v.url),
-      "🕒 Time": new Date().toLocaleString(),
-      ...(raw ? { "🔗 Params": `?${raw}` } : {}),
+      // a stored source: say so, or the card reads "from Resume" next to a URL with no ?r
+      ...(l.source && !l.fresh ? { "🔁 Referral": `${l.source}, remembered from an earlier visit${since} (this link had none)` } : {}),
+      "🕒 Their clock": `${new Date().toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}${v.timeZone ? ` (${v.timeZone})` : ""}`,
+      ...(bounceMs !== undefined ? { "⏱️ Time on page": `${Math.round(bounceMs / 1000)}s` } : {}),
+      ...(raw ? { "🔗 Params": `?${raw.replace(/=(?=&|$)/g, "")}` } : {}),  // "?r", as in the link, not "?r="
       ...(v.referrer ? { "↩️ Referrer": scrubUrl(v.referrer) } : {}),
       // ChatGPT's app often sends no referrer, its web UI does
       ...(l.ai ? { "🤖 AI assistant": `${l.ai} (${l.referrerHost ? "web, referrer sent" : "no referrer — often the mobile app"})` } : {}),
@@ -130,9 +142,12 @@ function skipped() {
 export function startVisits() {
   if (started || !LANDING) return;
   started = true;
-  const l = classify(LANDING.search, LANDING.referrer, get(localStorage, REFERRAL_KEY));
+  const l = classify(LANDING.search, LANDING.referrer, get(localStorage, REFERRAL_KEY), get(localStorage, REFERRAL_AT_KEY));
   if (l.optOut) set(localStorage, SKIP_KEY, "1");
-  if (l.fresh && l.source) set(localStorage, REFERRAL_KEY, l.source);
+  if (l.fresh && l.source) {
+    set(localStorage, REFERRAL_KEY, l.source);
+    set(localStorage, REFERRAL_AT_KEY, new Date(LANDING.at).toISOString());
+  }
 
   // Cosmetic and not gated by the skip rules: no tracking param stays in the address bar (App keeps its own).
   const now = new URLSearchParams(location.search);
@@ -145,28 +160,76 @@ export function startVisits() {
   addEventListener("keydown", key(true));
   addEventListener("keyup", key(false));
 
-  // Quick bounce: left within 10 s. sendBeacon survives the unload; once per tab session.
+  const signals = startHumanSignals();
+  const info: VisitInfo = { path: location.pathname || "/", url: LANDING.href, referrer: LANDING.referrer,
+    ua: navigator.userAgent, platform: navigator.platform, timeZone: timeZone() };
+  // sendBeacon survives the page unloading, where a fetch would be cancelled
+  const send = (card: Card) => navigator.sendBeacon("/api/track",
+    new Blob([JSON.stringify({ ...card, humanSignals: signals() })], { type: "application/json" }));
+  // Decided a beat after the listeners attach, so a held "/" (key repeat) is seen, then kept: by the time the card
+  // goes out the key is up again, and typing "/" later must not cancel it.
+  let skip: boolean | null = null;
+  setTimeout(() => { skip = skipped(); }, 300);
+
+  // One card per visit: after VISIT_DELAY_MS, so the human score has some input to judge, or when the page goes away.
+  // Gone within BOUNCE_MS: that same card says so ("left after 3s"); after the visit card: a second one, once per tab.
+  let visitSent = false;
+  const sendVisit = (bounceMs?: number) => {
+    if (visitSent || (skip ?? skipped())) return;
+    visitSent = true;
+    send(visitCard(l, info, bounceMs));
+  };
+  setTimeout(() => sendVisit(), VISIT_DELAY_MS);
   addEventListener("pagehide", () => {
     const ms = Date.now() - LANDING.at;
-    if (skipped() || /bot|crawler|spider/i.test(navigator.userAgent) || ms > BOUNCE_MS) return;
-    if (get(sessionStorage, "bounce_sent")) return;
-    set(sessionStorage, "bounce_sent", "1");
-    const ref = get(localStorage, REFERRAL_KEY);
-    const card: Card = {
-      webhookType: l.ai ? "ai_referral_visit" : ref ? "referral_visit" : "regular_visit",
-      event: ref ? `👋 Quick bounce from **${ref}** on ${location.pathname}` : `👋 Quick bounce on ${location.pathname}`,
-      meta: { "🛤️ Path": location.pathname, "🔗 URL": scrubUrl(location.href), "⏱️ Time on page": `${Math.round(ms / 1000)}s`,
-        "🕒 Time": new Date().toLocaleString() },
-    };
-    navigator.sendBeacon("/api/track", new Blob([JSON.stringify(card)], { type: "application/json" }));
+    const bounced = ms <= BOUNCE_MS && !/bot|crawler|spider/i.test(navigator.userAgent) && !get(sessionStorage, "bounce_sent");
+    if (bounced) set(sessionStorage, "bounce_sent", "1");
+    if (!visitSent) sendVisit(bounced ? ms : undefined);
+    else if (bounced && !skip) send(visitCard(l, info, ms));
   });
+}
 
-  // A beat after the listeners attach, so a held "/" (key repeat) is seen. Fire and forget.
-  setTimeout(() => {
-    if (skipped()) return;
-    const card = visitCard(l, { path: location.pathname || "/", url: LANDING.href, referrer: LANDING.referrer,
-      ua: navigator.userAgent, platform: navigator.platform });
-    fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(card) })
-      .catch(() => {});
-  }, 300);
+function timeZone() {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone || undefined; } catch { return undefined; }
+}
+
+// Raw facts for the human-likelihood score; search/demo/visits.py scores them together with the request headers.
+// Ported from firefighter-hazard (src/lib/track/human-score.ts).
+export type HumanSignals = {
+  webdriver: boolean;  // true when Selenium / Puppeteer / Playwright drive the browser
+  languagesCount: number; screenWidth: number; screenHeight: number;
+  outerWidth: number; outerHeight: number;  // 0 in many headless browsers: no real window around the page
+  pluginsCount: number; isMobile: boolean;
+  pointerMoves: number; touches: number; scrolls: number; keyPresses: number;
+  wasVisible: boolean;         // was the tab ever on screen?
+  interactedEarlier: boolean;  // showed real input earlier this tab session
+  msObserved: number;
+};
+
+/** Starts counting real input; the returned function snapshots the signals so far. */
+function startHumanSignals(): () => HumanSignals {
+  const startedAt = Date.now();
+  const n = { pointerMoves: 0, touches: 0, scrolls: 0, keyPresses: 0 };
+  let wasVisible = document.visibilityState === "visible";
+  const interactedEarlier = get(sessionStorage, HUMAN_SEEN_KEY) === "1";
+  // isTrusted: real input only, not events a script dispatches. "wheel"/"touchmove" rather than "scroll", which also
+  // fires for scripted scrolls and scroll restoration. A single stray mouse event isn't enough to remember the tab.
+  const count = (type: string, k: keyof typeof n, rememberAt = 1) => addEventListener(type, (e) => {
+    if (e.isTrusted && ++n[k] >= rememberAt) set(sessionStorage, HUMAN_SEEN_KEY, "1");
+  }, { passive: true });
+  count("mousemove", "pointerMoves", 5);
+  count("touchstart", "touches");
+  count("wheel", "scrolls");
+  count("touchmove", "scrolls");
+  count("keydown", "keyPresses");
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") wasVisible = true; });
+  return () => ({
+    webdriver: navigator.webdriver === true,
+    languagesCount: navigator.languages?.length ?? 0,
+    screenWidth: screen?.width ?? 0, screenHeight: screen?.height ?? 0,
+    outerWidth: outerWidth, outerHeight: outerHeight,
+    pluginsCount: navigator.plugins?.length ?? 0,
+    isMobile: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent),
+    ...n, wasVisible, interactedEarlier, msObserved: Date.now() - startedAt,
+  });
 }

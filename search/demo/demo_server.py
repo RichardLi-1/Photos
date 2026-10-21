@@ -11,8 +11,8 @@ Same API shapes as search/server.py, so the unmodified web/dist works. What diff
   * Nothing is written to disk at runtime except a private temp copy of the sqlite file; no access log, no query
     log. Rate limits keep per-IP counters in memory only.
   * Visitor analytics, off unless configured (visits.py; never in the local app): /api/track forwards the browser's
-    visit card + IP + Fly edge region to Discord, and AI fetchers get one log line each. Search text, photos and
-    photo IDs are never sent anywhere.
+    visit card + human score + IP + nearest Fly server city to Discord, and AI fetchers get one log line each.
+    Search text, photos and photo IDs are never sent anywhere.
 
 Env:
   DEMO_BUNDLE                bundle dir (default ./bundle)
@@ -275,7 +275,7 @@ async def track(request: Request):
         except ValueError:
             body = None
         if isinstance(body, dict):
-            visits.report_visit(body, ip=ip if ip != "?" else None, region=h.get("fly-region"))
+            visits.report_visit(body, ip=ip if ip != "?" else None, region=h.get("fly-region"), headers=h)
     return Response(status_code=204)
 
 

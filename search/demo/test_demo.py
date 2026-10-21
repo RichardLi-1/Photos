@@ -165,14 +165,43 @@ def test_track_posts_and_enriches(demo, sent, monkeypatch):
     (_, regular), (_, ai), (_, referral) = sent
     assert regular["color"] == referral["color"] == visits.BLURPLE and ai["color"] == visits.TEAL
     fields = {f["name"]: f["value"] for f in regular["fields"]}
-    assert fields["🌐 IP"] == "203.0.113.9" and "Tokyo" in fields["📍 Approx. location"]
-    assert "approximate" in fields["📍 Approx. location"]
+    assert fields["🌐 IP"] == "203.0.113.9"
+    assert fields["📍 Rough location"] == "Tokyo, Japan area (nearest Fly server: nrt)"
+    assert "🧍 Human likelihood" not in fields  # no humanSignals sent: no score
     n = len(sent)
     c.post("/api/track", json={"event": "x"}, headers={"fly-client-ip": "203.0.113.9"})  # no Sec-Fetch-Site: not a page
     c.post("/api/track", json={"event": "x"}, headers={"sec-fetch-site": "cross-site"})
     c.post("/api/track", content=b"[1]", headers={**SAME, "content-type": "application/json"})
     c.post("/api/track", json={"event": "x"}, headers={**SAME, "host": "localhost"})
     assert len(sent) == n
+
+
+HUMAN = {"webdriver": False, "languagesCount": 2, "screenWidth": 1512, "screenHeight": 982, "outerWidth": 1512,
+         "outerHeight": 900, "pluginsCount": 5, "isMobile": False, "pointerMoves": 40, "touches": 0, "scrolls": 3,
+         "keyPresses": 0, "wasVisible": True, "interactedEarlier": False, "msObserved": 5000}
+SAFARI = {"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/18.0 Safari/605.1.15",
+          "accept-language": "en-CA,en;q=0.9"}
+
+
+def test_human_score():
+    assert visits.score_human(HUMAN, SAFARI) == (90, "likely human", ["+25 mouse moved", "+15 scrolled"])
+    still = {**HUMAN, "pointerMoves": 0, "scrolls": 0, "msObserved": 7000}
+    assert visits.score_human(still, SAFARI)[:2] == (40, "unsure")  # read without touching: not branded a bot
+    headless = {**HUMAN, "webdriver": True, "outerWidth": 0, "outerHeight": 0, "pluginsCount": 0, "pointerMoves": 0,
+                "scrolls": 0}
+    chrome = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 HeadlessChrome/140.0 Safari/537.36"}
+    score, label, why = visits.score_human(headless, chrome)
+    assert (score, label) == (0, "likely bot") and "-50 webdriver flag (automated browser)" in why
+    assert visits.score_human({"pointerMoves": "9", "webdriver": "yes"}, SAFARI)[0] == 50  # junk counts as unknown
+
+
+def test_track_adds_human_score(demo, sent, monkeypatch):
+    _, c = demo
+    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://hook/only")
+    c.post("/api/track", json={"event": "👀 New visitor on /", "humanSignals": HUMAN}, headers={**SAME, **SAFARI})
+    fields = {f["name"]: f for f in sent[0][1]["fields"]}
+    assert fields["🧍 Human likelihood"]["value"] == "**90/100** (likely human)"
+    assert fields["🧾 Why"]["value"] == "+25 mouse moved, +15 scrolled" and fields["🧾 Why"]["inline"] is False
 
 
 def test_visit_type_matches_transit():

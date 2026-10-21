@@ -1,5 +1,5 @@
 # Fly.io (fallback host). `fly launch --no-deploy --copy-config` once, then `fly deploy` from the staged dir.
-# shared-cpu-1x / 1 GB, scale to zero: billed only while a machine runs (+ rootfs storage while stopped).
+# shared-cpu-1x / 1 GB, scale to zero: billed only while a machine runs (+ rootfs and snapshot storage while suspended).
 app = "photos-demo"            # change: must be globally unique; also update DEMO_ALLOWED_HOSTS below
 primary_region = "iad"         # NA/EU egress is the cheapest ($0.02/GB); pick the region nearest your visitors
 
@@ -14,7 +14,7 @@ primary_region = "iad"         # NA/EU egress is the cheapest ($0.02/GB); pick t
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = "suspend"   # resume from a memory snapshot (<1 s) instead of a ~10 s Python boot that outlasts the proxy's ~8 s wait
   auto_start_machines = true
   min_machines_running = 0
   [http_service.concurrency]

@@ -38,6 +38,26 @@ test("visitCard: routing and labels match Transit", () => {
   assert.equal(visitCard(classify("", "", null), MAC).meta["🖥️ Device"], "🖥️ Desktop · macOS");
 });
 
+test("visitCard: a remembered referral says so; a bounce is the same card", () => {
+  const fresh = visitCard(classify("?r", "", null), { ...MAC, url: "https://photos-demo.fly.dev/?r" });
+  assert.equal(fresh.event, "👀 New visitor from **Resume**");
+  assert.equal(fresh.meta["🔁 Referral"], undefined);
+  assert.equal(fresh.meta["🔗 Params"], "?r");
+  const back = classify("", "", "Resume", "2026-10-20T15:00:00Z");
+  assert.equal(back.since, "2026-10-20T15:00:00Z");
+  const card = visitCard(back, { ...MAC, timeZone: "America/Toronto" });
+  assert.equal(card.event, "👀 Returning visitor from **Resume**");
+  assert.match(card.meta["🔁 Referral"], /^Resume, remembered from an earlier visit on .+ \(this link had none\)$/);
+  assert.match(card.meta["🕒 Their clock"], /\(America\/Toronto\)$/);
+  assert.equal(card.meta["🛤️ Path"], undefined);
+  assert.equal(classify("", "", "Resume").since, null);
+  assert.equal(visitCard(classify("", "", "Resume"), MAC).meta["🔁 Referral"], "Resume, remembered from an earlier visit (this link had none)");
+  const bounce = visitCard(back, MAC, 1400);
+  assert.equal(bounce.event, "👋 Returning visitor from **Resume** left after 1s");
+  assert.equal(bounce.meta["⏱️ Time on page"], "1s");
+  assert.equal(visitCard(classify("", "", null), MAC, 3000).event, "👋 New visitor on / left after 3s");
+});
+
 test("scrubUrl / visitCard: no search text or photo ids leave the page", () => {
   assert.equal(scrubUrl("https://x.dev/?q=my+secret"), "https://x.dev/");
   assert.equal(scrubUrl("https://x.dev/?l&q=a&utm_source=b#h"), "https://x.dev/?l&utm_source=b#h");
