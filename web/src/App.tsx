@@ -8,6 +8,7 @@ import { AskCard } from "./components/AskCard";
 import { Edges } from "./components/Edges";
 import { MatchCard } from "./components/MatchCard";
 import { SearchBar } from "./components/SearchBar";
+import { TestBadge } from "./components/TestBadge";
 import { Wall } from "./components/Wall";
 import { emptyMessage, parsedChips } from "./parsed";
 import { startVisits } from "./visits";
@@ -153,6 +154,7 @@ export default function App() {
         verified={answer && !shownAgentIds ? verified : undefined} story={browsing && !ask && !agent ? { photos: n } : null}
         onPick={(id, rect) => setPicked({ id, rect })} />}
       <Edges />
+      <TestBadge />
       {picked && (
         <MatchCard key={picked.id} id={picked.id} anchor={picked.rect} ctx={ctx} onClose={closeCard}
           onMore={(id, place) => { setPicked(null); setImage(null); setAsk(null); setQuery({ kind: "similar", id, place }); }} />
