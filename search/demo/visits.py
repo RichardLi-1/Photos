@@ -3,17 +3,14 @@
 The local app (search/server.py), iOS, Android and desktop never import this; here every piece is a no-op until its
 env var is set. Webhook URLs stay server-side: the browser only ever calls /api/track.
   * Human visits: web/src/visits.ts posts a card (referral source, device, path) to /api/track; report_visit adds
-    the client IP and an approximate location, picks the Discord channel, and posts off the request path.
+    the client IP and an approximate location, and posts off the request path.
   * AI fetchers (ChatGPT-User, GPTBot, ClaudeBot, ...) run no JavaScript, so the middleware spots them by User-Agent:
     report_ai_fetch writes one JSON log line per hit, and posts to Discord only for "user" fetches.
 Location: Fly sends no visitor geo-IP headers, so the card names the Fly edge region that took the connection
 (fly-region), labelled approximate. No geo-IP service is called.
 
-Env (all optional; unset or "" = off):
-  DISCORD_REGULAR_VISITS_WEBHOOK_URL   visits with no referral (falls back to DISCORD_WEBHOOK_URL)
-  DISCORD_REFERRAL_VISITS_WEBHOOK_URL  ?l ?r ?t ?e ?g ?c / utm_source / other query-param visits (falls back to DISCORD_WEBHOOK_URL)
-  DISCORD_AI_VISITS_WEBHOOK_URL        visits from AI assistants + user-triggered AI fetches (falls back to referral)
-  DISCORD_WEBHOOK_URL                  fallback for every channel (one webhook is enough)
+Env (optional; unset or "" = off):
+  DISCORD_WEBHOOK_URL   every card goes to this one webhook; AI traffic is teal, everything else blurple
 """
 from __future__ import annotations
 
@@ -26,7 +23,6 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 
-VISIT_TYPES = ("regular_visit", "referral_visit", "ai_referral_visit")
 TEAL, BLURPLE = 0x14B8A6, 0x5865F2  # teal = AI traffic (visits and fetches), blurple = everything else
 MAX_FIELDS, MAX_NAME, MAX_VALUE, MAX_TITLE = 12, 64, 400, 256  # well inside Discord's embed limits (25 / 256 / 1024 / 6000)
 
@@ -76,22 +72,12 @@ def approx_location(region: str | None) -> str | None:
 
 
 # ---------------------------------------------------------------- routing
-def _env(k: str) -> str | None:
-    return (os.environ.get(k) or "").strip() or None
-
-
-def webhook_for(visit_type: str) -> str | None:
-    """Channel for a visit type; AI falls back to referral, and every channel to DISCORD_WEBHOOK_URL."""
-    if visit_type == "ai_referral_visit":
-        return (_env("DISCORD_AI_VISITS_WEBHOOK_URL") or _env("DISCORD_REFERRAL_VISITS_WEBHOOK_URL")
-                or _env("DISCORD_WEBHOOK_URL"))
-    if visit_type == "referral_visit":
-        return _env("DISCORD_REFERRAL_VISITS_WEBHOOK_URL") or _env("DISCORD_WEBHOOK_URL")
-    return _env("DISCORD_REGULAR_VISITS_WEBHOOK_URL") or _env("DISCORD_WEBHOOK_URL")
+def webhook() -> str | None:
+    return (os.environ.get("DISCORD_WEBHOOK_URL") or "").strip() or None
 
 
 def enabled() -> bool:
-    return any(webhook_for(t) for t in VISIT_TYPES)
+    return webhook() is not None
 
 
 def visit_type(event: str, meta: dict, webhook_type: str | None) -> str:
@@ -147,7 +133,7 @@ def report_visit(body: dict, ip: str | None, region: str | None) -> str | None:
             if isinstance(k, str) and isinstance(v, str) and k and v}
     wt = body.get("webhookType")
     kind = visit_type(event, meta, wt if isinstance(wt, str) else None)
-    url = webhook_for(kind)
+    url = webhook()
     if not url:
         return None
     loc = approx_location(region)
@@ -165,7 +151,7 @@ def report_ai_fetch(user_agent: str | None, path: str, local: bool) -> tuple[str
         return None
     token, vendor, kind = f
     print(json.dumps({"type": "ai_fetch", "vendor": vendor, "bot": token, "kind": kind, "page": path}), flush=True)
-    url = webhook_for("ai_referral_visit") if kind == "user" and not local else None
+    url = webhook() if kind == "user" and not local else None
     if url:
         post(url, {"title": _clip(f"🔎 {token} read {path} for someone", MAX_TITLE), "color": TEAL,
                    "fields": [{"name": "🤖 Assistant", "value": vendor, "inline": True},

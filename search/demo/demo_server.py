@@ -27,7 +27,7 @@ Env:
   DEMO_DENSE=1               keep a float32 copy of the vectors (4x RAM, ~5x faster matmul)
   DEMO_ALLOW_UNPUBLISHABLE=1 start with a bundle built with --allow-uncredited (local tests only)
   DEMO_IP_DEBUG=1            add X-Demo-Client-Key (the caller's own IP as the rate limiter sees it) to responses
-  DISCORD_*_WEBHOOK_URL      visit cards to Discord (see visits.py); webhook URLs never reach the browser
+  DISCORD_WEBHOOK_URL        visit cards to Discord (see visits.py); webhook URLs never reach the browser
 """
 from __future__ import annotations
 

@@ -36,16 +36,13 @@ To offload thumbnails, run `stage.py --export-thumbs DIR`, upload them to an R2 
 Ported from Transit Planner's visitor tracking. Code: `web/src/visits.ts`, `search/demo/visits.py`. The browser part starts only when `/api/stats` returns a `demo` object, and only the demo server returns one. The local app, iOS, Android and desktop collect nothing.
 
 - **Visit cards:** one per page load, plus one for a bounce under 10 s. The browser posts to `/api/track`, and the server adds the IP and an approximate location, then posts to Discord in the background. The location is the Fly edge region (`fly-region`), not a geo-IP lookup.
-- **Referral**, checked in this order: `?l` LinkedIn, `?r` Resume, `?t` Twitter/X, `?e` Email, `?g` GitHub, `?c` Cover Letter, then `utm_source`, then an AI-assistant referrer, then the source stored from an earlier visit. Tracking params are then removed from the address bar. AI landings go to their own channel (teal cards), on the first visit only.
+- **Referral**, checked in this order: `?l` LinkedIn, `?r` Resume, `?t` Twitter/X, `?e` Email, `?g` GitHub, `?c` Cover Letter, then `utm_source`, then an AI-assistant referrer, then the source stored from an earlier visit. Tracking params are then removed from the address bar. AI landings get teal cards, on the first visit only.
 - **AI fetchers** (`ChatGPT-User`, `GPTBot`, `ClaudeBot`, `PerplexityBot`, ...): each fetch writes one `ai_fetch` JSON line to the Fly logs, with the path only. User-triggered fetches (`*-User`) also post to Discord.
 - **What is sent:** event label, device and OS, path, landing URL, referral params and referrer, IP, and the edge region. **Never sent:** search text (`?q=` is removed from every URL), photos or photo IDs, or agent messages.
 - **Skipped:** `localhost`, any browser that once opened a URL with `?m` (stored as `skip_tracking`), and holding `/` while the page loads.
 
-| Env (all optional; none set = off) | Used for |
+| Env (optional; unset = off) | Used for |
 |---|---|
-| `DISCORD_REGULAR_VISITS_WEBHOOK_URL` | Visits with no referral; falls back to `DISCORD_WEBHOOK_URL` |
-| `DISCORD_REFERRAL_VISITS_WEBHOOK_URL` | Referral and other query-param visits; falls back to `DISCORD_WEBHOOK_URL` |
-| `DISCORD_AI_VISITS_WEBHOOK_URL` | AI-assistant visits and `*-User` fetches; falls back to referral |
-| `DISCORD_WEBHOOK_URL` | Fallback for every channel: one webhook is enough |
+| `DISCORD_WEBHOOK_URL` | Every visit card: AI traffic in teal, everything else in blurple |
 
 Fill in `search/demo/deploy/.env` from `.env.example` (gitignored), then run `fly secrets import -a photos-demo < search/demo/deploy/.env`. Webhook URLs stay on the server.

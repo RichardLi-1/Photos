@@ -96,8 +96,7 @@ def test_tar_stream_parser_handles_long_names():
 # ---------------------------------------------------------------- hosted-demo analytics (visits.py + demo_server guards)
 import visits  # noqa: E402
 
-AI_ENV = ("DISCORD_WEBHOOK_URL", "DISCORD_REGULAR_VISITS_WEBHOOK_URL", "DISCORD_REFERRAL_VISITS_WEBHOOK_URL",
-          "DISCORD_AI_VISITS_WEBHOOK_URL")
+AI_ENV = ("DISCORD_WEBHOOK_URL",)
 SAME = {"sec-fetch-site": "same-origin"}
 
 
@@ -155,37 +154,25 @@ def test_track_is_a_noop_without_env(demo, sent):
     assert r.status_code == 204 and not r.content and sent == []
 
 
-def test_track_routes_and_enriches(demo, sent, monkeypatch):
+def test_track_posts_and_enriches(demo, sent, monkeypatch):
     _, c = demo
-    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://hook/general")
-    monkeypatch.setenv("DISCORD_REFERRAL_VISITS_WEBHOOK_URL", "https://hook/referral")
+    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://hook/only")
     h = {**SAME, "fly-client-ip": "203.0.113.9", "fly-region": "nrt"}
     c.post("/api/track", json={"event": "👀 New visitor on /", "meta": {"🔗 URL": "https://x/"}}, headers=h)
     c.post("/api/track", json={"event": "👀 New visitor from **ChatGPT**", "webhookType": "ai_referral_visit"}, headers=h)
     c.post("/api/track", json={"event": "👀 New visitor", "meta": {"🔗 Params": "?promo"}}, headers=h)
-    assert [u for u, _ in sent] == ["https://hook/general", "https://hook/referral", "https://hook/referral"]
-    (_, regular), (_, ai) = sent[:2]
-    assert regular["color"] == visits.BLURPLE and ai["color"] == visits.TEAL  # AI falls back to referral, stays teal
+    assert [u for u, _ in sent] == ["https://hook/only"] * 3  # one webhook for every visit type
+    (_, regular), (_, ai), (_, referral) = sent
+    assert regular["color"] == referral["color"] == visits.BLURPLE and ai["color"] == visits.TEAL
     fields = {f["name"]: f["value"] for f in regular["fields"]}
     assert fields["🌐 IP"] == "203.0.113.9" and "Tokyo" in fields["📍 Approx. location"]
     assert "approximate" in fields["📍 Approx. location"]
-    monkeypatch.setenv("DISCORD_AI_VISITS_WEBHOOK_URL", "https://hook/ai")
-    c.post("/api/track", json={"event": "x", "webhookType": "ai_referral_visit"}, headers=h)
-    assert sent[-1][0] == "https://hook/ai"
     n = len(sent)
     c.post("/api/track", json={"event": "x"}, headers={"fly-client-ip": "203.0.113.9"})  # no Sec-Fetch-Site: not a page
     c.post("/api/track", json={"event": "x"}, headers={"sec-fetch-site": "cross-site"})
     c.post("/api/track", content=b"[1]", headers={**SAME, "content-type": "application/json"})
     c.post("/api/track", json={"event": "x"}, headers={**SAME, "host": "localhost"})
     assert len(sent) == n
-
-
-def test_single_webhook_catches_everything(demo, sent, monkeypatch):
-    _, c = demo
-    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://hook/only")
-    for wt in (None, "referral_visit", "ai_referral_visit"):
-        c.post("/api/track", json={"event": "x", **({"webhookType": wt} if wt else {})}, headers=SAME)
-    assert [u for u, _ in sent] == ["https://hook/only"] * 3
 
 
 def test_visit_type_matches_transit():
@@ -211,7 +198,7 @@ def test_visit_type_matches_transit():
 ])
 def test_ai_fetcher_classification(demo, sent, monkeypatch, capsys, ua, kind):
     assert (visits.match_ai_fetcher(ua) or (None, None, None))[2] == kind
-    monkeypatch.setenv("DISCORD_AI_VISITS_WEBHOOK_URL", "https://hook/ai")
+    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://hook/only")
     _, c = demo
     assert c.get("/api/stats?q=secret", headers={"user-agent": ua}).status_code == 200
     lines = [json.loads(x) for x in capsys.readouterr().out.splitlines() if x.startswith('{"type": "ai_fetch"')]
@@ -219,7 +206,7 @@ def test_ai_fetcher_classification(demo, sent, monkeypatch, capsys, ua, kind):
     assert all(x["page"] == "/api/stats" for x in lines)  # path only: a query string could carry search text
     assert len(sent) == (kind == "user")
     if sent:
-        assert sent[0][0] == "https://hook/ai" and sent[0][1]["color"] == visits.TEAL
+        assert sent[0][0] == "https://hook/only" and sent[0][1]["color"] == visits.TEAL
 
 
 def test_csp_stays_same_origin(demo):
